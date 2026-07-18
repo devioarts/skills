@@ -1,6 +1,6 @@
 # MDDocs Content Model
 
-Canonical MDDocs repository: `https://github.com/devioarts/mddocs`.
+Canonical MDDocs repository: [devioarts/mddocs](https://github.com/devioarts/mddocs).
 
 ## Documentation Directory
 
@@ -9,7 +9,7 @@ A MDDocs documentation set is a directory of Markdown files. The directory name 
 ```text
 docs/
   project-name/
-    menu.md
+    .menu.md
     index.md
 ```
 
@@ -31,13 +31,13 @@ or:
 docs/project-name/index.md
 ```
 
-MDDocs can render a directory with Markdown files even when `menu.md` is absent.
+MDDocs can render a directory with Markdown files even when `.menu.md` is absent.
 
 Minimal documentation still needs useful content: purpose, prerequisites, setup, usage, and any important configuration or limitations.
 
 ## Multi-Page Documentation
 
-Create `menu.md` once there is more than one page, or when reading order matters even for a single page.
+Create `.menu.md` once there is more than one page, or when reading order matters even for a single page.
 
 Recommended pages:
 
@@ -171,7 +171,7 @@ Write for humans and future agents:
 
 ## Navigation Quality
 
-`menu.md` is both the sidebar and the reading path. Use it to tell the reader what order to follow.
+`.menu.md` is both the sidebar and the reading path. Use it to tell the reader what order to follow.
 
 Good menu entries are short and task-oriented:
 
@@ -188,16 +188,19 @@ Good menu entries are short and task-oriented:
 - [Development](development.md)
 ```
 
-Do not include pages in `menu.md` just because they exist. Include pages that belong in the primary documentation journey.
+Do not include pages in `.menu.md` just because they exist. Include pages that belong in the primary documentation journey.
 
 ## Links and Assets
 
-Use relative Markdown links:
+Use relative Markdown links for pages inside the same documentation set, and the same `[text](url)` syntax for any other URL, internal or external:
 
 ```markdown
 [Configuration](configuration.md)
 [GitHub integration](integrations/github.md)
+[devioarts/skills](https://github.com/devioarts/skills)
 ```
+
+Every URL that appears in documentation prose must render as a clickable link, never as bare text or as a URL sitting inside backticks or a fenced code block. A code span or fence tells MDDocs "this is literal text to copy", so a bare link inside one renders as an unclickable, copy-only code block instead of an anchor — for example a `text`-language fence around a repository URL. Reserve code spans and fences for values meant to be copied or run (commands, paths, config keys, code), not for links meant to be followed.
 
 Store documentation assets under `assets/` inside the documentation set when possible:
 

@@ -6,11 +6,12 @@ Before finishing substantial MDDocs documentation work, check:
 - Every page has one clear `#` heading.
 - The output matches the requested document type: README, API docs, runbook, architecture doc, onboarding guide, user guide, operations guide, or broader documentation set.
 - Ambiguous requests were either clarified with the user or handled with an explicitly stated, reasonable default.
-- `menu.md` exists for multi-page documentation.
+- `.menu.md` exists for multi-page documentation.
 - Large topics are split into readable pages or clear subsections; configuration is grouped by decision area instead of one flat option dump.
 - Package, plugin, SDK, CLI, and platform-library docs explain concepts and common tasks before exhaustive API/reference material.
-- Every linked page in `menu.md` exists.
+- Every linked page in `.menu.md` exists.
 - Relative Markdown links point to real files.
+- Every URL in the text renders as a clickable Markdown link (`[text](url)`) — never a bare URL or a URL inside backticks or a fenced code block. See `references/content-model.md` (Links and Assets).
 - Commands are copied from actual project scripts or verified source files.
 - Configuration values and environment variables match the code or existing docs.
 - Commands, configuration, APIs, plugins, integrations, and workflows include verified examples when source material supports them.
@@ -48,7 +49,8 @@ Reject and revise the documentation before finishing if any of these are true:
 
 For every new or edited documentation set:
 
-- Compare `menu.md` entries against files on disk.
+- Compare `.menu.md` entries against files on disk.
+- Search the docs for bare `http://` / `https://` URLs and for URLs inside backticks or fenced code blocks; convert each to a proper `[text](url)` Markdown link.
 - Search the docs for TODO, placeholder, "coming soon", and generic filler phrases.
 - Check that each page's opening paragraph says what the page helps the reader do.
 - Check that each command has a source in project scripts, existing docs, or inspected files.

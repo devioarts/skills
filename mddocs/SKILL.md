@@ -1,13 +1,13 @@
 ---
 name: mddocs
-description: Create, rewrite, restructure, validate, and maintain high-quality MDDocs-compatible technical documentation. Use when asked to write docs for a project, document this, create a README, write API docs, architecture docs, runbooks, onboarding guides, maintainer docs, user guides, improve poor documentation, turn README notes into a documentation set, design documentation structure, update menu.md navigation, keep documentation agent-friendly, or install/reuse the MDDocs documentation skill in Codex, Claude, or another agent environment.
+description: Create, rewrite, restructure, validate, and maintain high-quality MDDocs-compatible technical documentation. Use when asked to write docs for a project, document this, create a README, write API docs, architecture docs, runbooks, onboarding guides, maintainer docs, user guides, improve poor documentation, turn README notes into a documentation set, design documentation structure, update .menu.md navigation, keep documentation agent-friendly, or install/reuse the MDDocs documentation skill in Codex, Claude, or another agent environment.
 ---
 
 # MDDocs
 
 Use this skill to create portable, AI-first project documentation that can be rendered by MDDocs and maintained by agents over time.
 
-Canonical source: `https://github.com/devioarts/skills/tree/main/mddocs`.
+Canonical source: [devioarts/skills — mddocs](https://github.com/devioarts/skills/tree/main/mddocs).
 
 When using this skill outside the MDDocs repository, keep the whole skill folder together, including `references/`.
 
@@ -32,11 +32,11 @@ Create documentation as plain Markdown files inside a documentation directory:
 ```text
 docs/
   project-name/
-    menu.md
+    .menu.md
     index.md
 ```
 
-For very small projects, `menu.md` is optional. A single `README.md` or `index.md` is valid MDDocs documentation. Once there is more than one page, create `menu.md`. See `references/content-model.md` for the recommended page set, nested topics, and when to split a page into subpages.
+For very small projects, `.menu.md` is optional. A single `README.md` or `index.md` is valid MDDocs documentation. Once there is more than one page, create `.menu.md`. See `references/content-model.md` for the recommended page set, nested topics, and when to split a page into subpages.
 
 Keep documentation in English unless the user explicitly requests another language. When extending or editing an existing documentation set, match its existing language instead of defaulting to English.
 
@@ -49,10 +49,10 @@ If an MCP client is connected to a MDDocs server, read `references/mcp-workflow.
 3. Build a source map. Note the commands, configuration keys, entry points, modules, workflows, deployment steps, and risks that are actually supported by the project. When inspected source and a user-provided claim disagree, trust the source and note the discrepancy instead of silently following the claim.
 4. Choose the clearest useful information architecture. Create pages around reader jobs, not around the source tree. Keep small topics small, but split large topics into readable pages or subsections.
 5. Read `references/documentation-authoring.md` before creating new documentation, rewriting poor documentation, or substantially restructuring a documentation set. Use its document-type guidance to decide whether the output should be a README, API reference, runbook, architecture doc, onboarding guide, or broader docs set.
-6. Read `references/content-model.md` when deciding the MDDocs folder shape, page list, asset locations, and `menu.md` structure.
-7. For a new multi-page documentation set, or when a requested update spans many existing pages, propose the page list (or updated `menu.md`) and get confirmation before drafting full content — restructuring after full pages are written is expensive. For a single page or a small edit, skip this and draft directly. Also do this on request, whenever the user asks to see a plan first.
+6. Read `references/content-model.md` when deciding the MDDocs folder shape, page list, asset locations, and `.menu.md` structure.
+7. For a new multi-page documentation set, or when a requested update spans many existing pages, propose the page list (or updated `.menu.md`) and get confirmation before drafting full content — restructuring after full pages are written is expensive. For a single page or a small edit, skip this and draft directly. Also do this on request, whenever the user asks to see a plan first.
 8. Draft pages from the source map. Prefer concrete commands, examples, file paths, env vars, routes, extension points, and troubleshooting signals over generic prose.
-9. Cross-link pages with relative Markdown links. Create or update `menu.md` once there is more than one page.
+9. Cross-link pages with relative Markdown links, and render any other URL as a Markdown link too — never leave a bare URL or a URL inside backticks or a code fence, see `references/content-model.md` (Links and Assets). Create or update `.menu.md` once there is more than one page.
 10. Read `references/validation.md` before finishing substantial documentation work and revise until the docs pass the quality checklist. Run the `validate_documentation` MCP tool instead of the manual link check when it is available.
 11. If working inside a MDDocs project, run `composer build-search` after content changes and `composer lint` after PHP changes.
 12. Report what changed and any commands that were or were not run.
@@ -74,7 +74,7 @@ If an MCP client is connected to a MDDocs server, read `references/mcp-workflow.
 - Avoid dumping a file tree unless it explains where maintainers make common changes.
 - Preserve useful existing content, but rewrite weak content instead of copying it forward.
 
-If the user asks to install or reuse the MDDocs skill, use the canonical repository `https://github.com/devioarts/skills` as the source unless they provide another source.
+If the user asks to install or reuse the MDDocs skill, use the canonical repository [devioarts/skills](https://github.com/devioarts/skills) as the source unless they provide another source.
 
 For normal documentation generation, work locally in the target project first. Do not write directly to a production MDDocs server unless the user explicitly asks for that deployment step. Produce a MDDocs-compatible documentation folder that can later be uploaded, committed, or copied into a MDDocs server's `docs/` directory.
 
@@ -85,9 +85,9 @@ Default personal install locations:
 
 Claude Code project-local skills can live under `.claude/skills/mddocs` in the target repository.
 
-## menu.md
+## .menu.md
 
-`menu.md` is the explicit navigation map: a `#` title followed by pages in reading order, with nested bullets for sections.
+`.menu.md` is the explicit navigation map: a `#` title followed by pages in reading order, with nested bullets for sections.
 
 ```markdown
 # Project Name
