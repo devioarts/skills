@@ -227,6 +227,8 @@ Every page should have:
 - project-specific details grounded in inspected files
 - links to adjacent pages when the reader naturally needs them next
 - no placeholder sections
+- short reference facts about the subject (source file, channel/route prefix, config requirement, stability) as a compact key: value list or small table right after the opening paragraph — not folded into its first sentence
+- the one fact the reader most needs to remember (which variant is trusted, which action is destructive, which flag changes default behavior) stated plainly, in bold if useful, rather than left to be inferred from inside a table cell or a bullet's middle clause
 
 Avoid pages that only say "this project supports X" without explaining how to use, change, or verify X.
 
@@ -250,6 +252,7 @@ Split or restructure a page when:
 - code examples are not introduced by a task or expected outcome
 - paragraphs explain multiple concepts at once
 - the reader cannot tell what to read first and what to skip
+- two or more variants (options, modes, endpoints, platforms) are each explained in their own paragraph or bullet but differ along the same 3 or more dimensions — that comparison belongs in a table, one row per variant, not parallel prose
 
 Prefer short sections with descriptive headings over long continuous prose. Use tables for lookup, not as a substitute for explanation. For APIs or large feature surfaces, group by reader task and provide a minimal example before the full reference.
 
@@ -266,6 +269,25 @@ into this:
 > `flushQueue()` (worker) drains every pending job from the in-memory buffer. It writes jobs to disk in batches — 50 per batch by default, configurable via `queue.batchSize` — to avoid one fsync per job. Only after a batch is written does it acknowledge those jobs to the caller. Because acknowledgment happens after the write, a crash can only lose an already-batched, not-yet-written group; it can never lose a job the caller believes finished.
 
 Same facts, same technical precision, but each sentence now does one job. If a paragraph still needs more than 4-5 lines to explain one mechanism after this split, it is a candidate for a short list or a code example instead of more prose.
+
+This rule applies inside list items as much as paragraphs. A bullet that stacks a definition, an example, a consequence, and a nested sub-list of options is the same run-on problem behind a dash instead of a full stop — and it is easy to miss because the list already looks structured.
+
+When that bullet is one of two or more items describing variants that share several comparable dimensions (trust level, access, behavior, platform support), do not just split the bullet into shorter sentences — promote the comparison to a table. Two dense bullets like this:
+
+> - `appPath` — a route inside your own app. Trusted content, so the window gets the full preload bridge. Resolution is pluggable via `resolveAppWindow`, mirroring however the main window loads.
+> - `url` — an external `http(s)` address. Untrusted, so it never gets the preload bridge, can't spawn further windows, and off-domain navigation is intercepted rather than followed.
+
+read faster as:
+
+> | | `appPath` | `url` |
+> |---|---|---|
+> | Content | route inside your own app | external `http(s)` address |
+> | Trust | trusted | untrusted |
+> | Preload bridge | full access | none |
+> | Can spawn windows | yes | no |
+> | Off-target navigation | followed | intercepted |
+
+The table replaces the enumeration, not the explanation — still give the one fact that matters most (see Page Quality) its own short sentence, then let the table carry the rest of the comparison.
 
 ## Examples
 
