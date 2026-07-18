@@ -254,6 +254,18 @@ Split or restructure a page when:
 - the reader cannot tell what to read first and what to skip
 - two or more variants (options, modes, endpoints, platforms) are each explained in their own paragraph or bullet but differ along the same 3 or more dimensions — that comparison belongs in a table, one row per variant, not parallel prose
 
+Headings (`##` and deeper) hold plain words only — no inline code spans or backticked identifiers. A heading doubles as the on-page table of contents entry, so a file path, channel prefix, or type name stuffed into it produces a long, code-heavy TOC line instead of a short scannable one. Put the exact identifier in the sentence right below the heading instead:
+
+Split this:
+
+> `## <Section name> (`<implementation detail>`, `<another implementation detail>`)`
+
+into this:
+
+> `## <Section name>`
+>
+> `<Implementation detail written out as a plain sentence.>`
+
 Prefer short sections with descriptive headings over long continuous prose. Use tables for lookup, not as a substitute for explanation. For APIs or large feature surfaces, group by reader task and provide a minimal example before the full reference.
 
 Every sentence is doing one of four jobs — the [Diátaxis](https://diataxis.fr) framework names them well: walking a newcomer through steps (tutorial), solving a specific problem (how-to), stating a fact for lookup (reference), or explaining why something is the way it is (explanation). Mixing two of these within the same paragraph — a lookup fact interrupting a "why" explanation, or background theory breaking into a step-by-step instruction — is a sharper version of "paragraphs explain multiple concepts at once." When restructuring a dense page, ask which of the four jobs each sentence is doing; a sentence doing a different job than its neighbors belongs in its own paragraph, list, or section.

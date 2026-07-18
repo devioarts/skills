@@ -190,6 +190,12 @@ Good menu entries are short and task-oriented:
 
 Do not include pages in `.menu.md` just because they exist. Include pages that belong in the primary documentation journey.
 
+Top-level entries stay in deliberate reading order — overview before quick start before configuration before deployment — because the order itself carries meaning about what to read first. Do not alphabetize top-level sections.
+
+A nested group needs a judgment call: is it a catalog or a sequence? A catalog is a flat set of parallel, independent entries with no reading dependency between them — the reader jumps straight to the one name they need, not start to finish (one page per API module, a list of plugins, a list of error codes). Alphabetize a catalog; that is what makes it scannable. A sequence is a set of entries that build on each other or move from simple to advanced (setup steps, a configuration overview building a mental model piece by piece) — keep a sequence in its authored order, never alphabetized.
+
+Example: a group listing one page per independent item (`<item-a>`, `<item-b>`, `<item-c>`, ...) with no dependency between entries is a catalog — alphabetize it. A group whose subpages build up understanding step by step (`<overview>` → `<concept-a>` → `<concept-b>` → `<advanced>`) is a sequence — leave its order alone.
+
 ## Links and Assets
 
 Use relative Markdown links for pages inside the same documentation set, and the same `[text](url)` syntax for any other URL, internal or external:
